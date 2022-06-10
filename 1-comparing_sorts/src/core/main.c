@@ -26,7 +26,7 @@
                                          * my own for this case
                                         */
 // function implementations
-void importData(int rankArray[], unsigned long long int passwordArray[]);
+//void importData(int rankArray[], unsigned long long int passwordArray[]);
 
 // main driver
 int main() {
