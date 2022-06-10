@@ -9,6 +9,8 @@
 
 double runBubbleSort(int rankArray[], unsigned long long int passwordArray[], 
                                                                 int size);
+double runRecursiveBubbleSort(int rankArray[], unsigned long long int passwordArray[],
+                                                                int size);
 
 #endif
 

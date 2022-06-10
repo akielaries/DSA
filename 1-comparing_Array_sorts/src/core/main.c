@@ -26,7 +26,7 @@
                                          * my own for this case
                                         */
 // function implementations
-//void importData(int rankArray[], unsigned long long int passwordArray[]);
+void importData(int rankArray[], unsigned long long int passwordArray[]);
 
 // main driver
 int main() {
@@ -35,7 +35,8 @@ int main() {
     unsigned long long int passwordArray[MAX_CAPACITY];
     int size;
     double runTime;
-    FILE *bubbleSortOutputFile, *insertionSortOutputFile, *selectionSortOutputFile;    
+    FILE *bubbleSortOutputFile, *recursiveBubbleSortOutputFile, 
+         *insertionSortOutputFile, *selectionSortOutputFile;    
     
     // import data
     //importData();
@@ -61,7 +62,16 @@ int main() {
         writeDataToFile(rankArray, passwordArray, size, bubbleSortOutputFile);
         // close bubble sort file
         fclose(bubbleSortOutputFile);
-        
+
+        // FOR RECURSIVE BUBBLE SORT
+        importData(rankArray, passwordArray);
+        recursiveBubbleSortOutputFile = fopen("../reports/recursiveBubbleSort.csv", "w+");
+        fprintf(bubbleSortOutputFile, "Array Recursive Bubble Sort:\n");
+        runTime = runRecursiveBubbleSort(rankArray, passwordArray, size);
+        fprintf(recursiveBubbleSortOutputFile,                                                                               
+                    "It took %f seconds to sort %d elements.\n", runTime, size);
+        writeDataToFile(rankArray, passwordArray, size, recursiveBubbleSortOutputFile);
+        fclose(recursiveBubbleSortOutputFile);
         // FOR SELECTION SORT; read in csv
         importData(rankArray, passwordArray);
         selectionSortOutputFile = fopen("../reports/selectionSort.csv", "w+");
@@ -83,7 +93,7 @@ int main() {
         fclose(insertionSortOutputFile);
         
         // display success message to screen
-        printf("\nSorted data written to bubbleSort.csv selectionSort.csv, and insertionSort.csv");
+        printf("\nSorted data written to bubbleSort.csv, recursiveBubbleSort.csv, selectionSort.csv, and insertionSort.csv");
     }
     
     // otherwise, data was not in array

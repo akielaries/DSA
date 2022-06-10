@@ -1,11 +1,10 @@
 CC 			= gcc
 CFLAGS 		= -Wall -Wextra -g
 VPATH 		= /$(realpath $(CURDIR)/../src/core/):/$(realpath $(CURDIR)/../src/libs/)
-
 PROJDIR		= $(realpath $(CURDIR)/..)
 SRCDIR 		:= $(shell find $(PROJDIR)/src -name '*.c')
 BUILDDIR 	= $(PROJDIR)/build
-#OBJFILES 	:= $(shell find $(BUILDDIR) -name '*.o')
+# Do something about object files
 TARGET 		= main
 VERBOSE 	= TRUE
 
@@ -16,7 +15,7 @@ compile:
 
 run:
 	./${TARGET}
-	head -2 ../reports/bubbleSort.csv ../reports/insertionSort.csv ../reports/selectionSort.csv
+	head -2 ../reports/bubbleSort.csv ../reports/recursiveBubbleSort.csv ../reports/insertionSort.csv ../reports/selectionSort.csv
 
 clean:
 	rm -f $(SRCDIR/*.o) $(TARGET) *~
