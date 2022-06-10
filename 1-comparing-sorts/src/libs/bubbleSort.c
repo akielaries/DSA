@@ -1,10 +1,12 @@
 /*
  * implementation of bubbleSort.h file
  */
+
 // header files
 #include <stdio.h>          // in/out
 #include <time.h>           // measuring run time of our algos with this
 #include <string.h>
+#include "swap.h"
 
 /*
 Name: runBubbleSort
@@ -23,7 +25,8 @@ double runBubbleSort(int rankArray[], unsigned long long int passwordArray[],
     // initialize variables
     clock_t startTime, endTime;
     double totalTime;
-    int list, search, swap = 0;
+    int list, search, tempRank= 0;
+    unsigned long long int tempPass = 0;
 
     startTime = clock();
 
@@ -34,13 +37,14 @@ double runBubbleSort(int rankArray[], unsigned long long int passwordArray[],
             // check to see if next element is larger than current
             if (rankArray[search] > rankArray[search + 1]) {
                 // swap current and next element 
-                swap = rankArray[search];
+                
+                tempRank = rankArray[search];
                 rankArray[search] = rankArray[search + 1];
-                rankArray[search + 1] = swap;
+                rankArray[search + 1] = tempRank;
 
-                swap = passwordArray[search];
+                tempPass = passwordArray[search];
                 passwordArray[search] = passwordArray[search + 1];
-                passwordArray[search + 1] = swap;
+                passwordArray[search + 1] = tempPass;
             }
         }
     }

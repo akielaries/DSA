@@ -23,7 +23,8 @@ double runInsertionSort(int rankArray[], unsigned long long int passwordArray[],
     // initialize variables
     clock_t startTime, endTime;
     double totalTime;
-    unsigned long long int list, search, tempRank, tempPass = 0;
+    int list, search, tempRank = 1;
+    unsigned long long int tempPass = 1;
 
     startTime = clock();
 

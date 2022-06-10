@@ -5,7 +5,7 @@
 #include <stdio.h>          // in/out
 #include <time.h>           // measuring run time of our algos with this
 #include <string.h>
-
+#include "swap.h"
 
 
 /* 
@@ -16,27 +16,24 @@ double runSelectionSort(int rankArray[], unsigned long long int passwordArray[],
     // initialize variables
     clock_t startTime, endTime;
     double totalTime;
-    unsigned long long int list, search, min, temp = 0;
+    int list, search, min;
+    unsigned long long int tempPass = 0;
     startTime = clock();
 
     // 1 by 1 move boundary of unsorted subarray
     for (list = 0; list < size - 1; list++) {
         min = list;
-
-
         for (search = list + 1; search < size; search++) {
             if (rankArray[search] < rankArray[min]) {
                 min = search;
             }
         }
-        // tempRank = swap(&rankArray[min], &rankArray[list]);
-        temp = rankArray[min];
-        rankArray[min] = rankArray[list];
-        rankArray[list] = temp;
-
-        temp = passwordArray[min];
+        // swap rank using swap() fun that takes in ints
+        swap(&rankArray[min], &rankArray[list]);
+        // assign int rank values to ulli pass without writing new function
+        tempPass = passwordArray[min];
         passwordArray[min] = passwordArray[list];
-        passwordArray[list] = temp;
+        passwordArray[list] = tempPass;
 
     }
 

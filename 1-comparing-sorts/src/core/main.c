@@ -13,13 +13,20 @@
 // header files
 #include <stdio.h>              // file io
 #include <time.h>               // measuring time
-#include <string.h>             
-#include "bubbleSort.h"         // bubble sort algorithm
-#include "insertionSort.h"      // insertion sort algorithm
-#include "selectionSort.h"      // selection sort algorithm
-
-// global constants
-const int MAX_CAPACITY = 150001;
+#include <string.h>
+#include "../libs/constants.h"          // constants
+#include "../libs/writeToFile.h"        // write sorted data to .csv file
+#include "../libs/importData.h"         // import data from unsorted .csv file
+#include "../libs/bubbleSort.h"         // bubble sort algorithm
+#include "../libs/insertionSort.h"      // insertion sort algorithm
+#include "../libs/selectionSort.h"      // selection sort algorithm
+#include "../libs/compare.h"            // compare data lib
+#include "../libs/swap.h"               /* swap data lib. C does
+                                         * not have such lib so made 
+                                         * my own for this case
+                                        */
+// function implementations
+void importData(int rankArray[], unsigned long long int passwordArray[]);
 
 // main driver
 int main() {
@@ -30,6 +37,8 @@ int main() {
     double runTime;
     FILE *bubbleSortOutputFile, *insertionSortOutputFile, *selectionSortOutputFile;    
     
+    // import data
+    //importData();
     // prompt for size
     printf("Enter the number of values to be sorted: ");
 	scanf("%d", &size);
@@ -81,99 +90,12 @@ int main() {
     else {
         printf("\n\nError: no data found\n");
     }
-
+    
+    // write data to file
+    //writeDataToFile(int rankArray[], unsigned long long int passwordArray[]);
     // display function success
     printf("\n\nProgram End\n");
     
     // return function success
     return 0;
 }
-
-// function implementations
-
-/*
-Name: compareData
-Process: compares data, returns value greater than 0 if dataOne is larger 
-than dataTwo, returns value less than 0 if dataOne is less than dataTwo,
-and returns 0 is data are the same.
-Function input/parameters: the two values to be compared (int)
-Function output/parameters: none
-Function output/returned: value as specified (int)
-Device input/file: none
-Device output/monitor: none
-Dependencies: none
-*/
-int compareData(int dataOne, int dataTwo) {
-    if (dataOne > dataTwo) {
-        return 1;
-    } 
-    else if (dataOne < dataTwo){
-        return -1;
-    }
-    else {
-        return 0;
-    }
-}
-
-void swap(int *dataOne, int *dataTwo) {
-    int temp = *dataOne;
-    *dataOne = *dataTwo;
-    *dataTwo = temp;
-}
-
-// provided functions
-void writeDataToFile(int rankArray[], unsigned long long int passwordArray[], int size,
-                                                                 FILE *fileName) {
-    // initialize variables
-    int index = 0;
-    
-    // loop across specified elements
-    for(index; index < size; index++) {
-        // write data pair to file
-        fprintf( fileName, "%d, ", rankArray[index]);
-        fprintf( fileName, "%I64llu\n", passwordArray[index]);
-    }
-    // void, no return
-}
-
-void importData(int rankArray[], unsigned long long int passwordArray[]) {
-    // initialize variables
-    FILE *inputFile;
-    int rankIndex = 0, passIndex = 0;
-    int rank, strLen;
-    unsigned long long int result = 0;
-    char password[40];
-    char commaCapture;
-    int index;
-    
-    // open file from data folder
-    inputFile = fopen("../data/HW_1_DATA_UNSORTED.csv", "r");
-
-    for(rankIndex = 0, passIndex = 0; rankIndex < MAX_CAPACITY;
-                                                       rankIndex++, passIndex++) {
-        result = 0;
-        
-        // read in first number
-        fscanf( inputFile, "%d", &rank );
-        // capture comma
-        fscanf( inputFile, "%c", &commaCapture );
-        // read in second number
-        fscanf( inputFile, "%s", password );
-
-        strLen = strlen(password);
-        
-        for(index = 0; index < strLen; index++) {
-           result = (result * 10 ) + (password[index] - '0');
-        }
-        
-        // put data into array, cast as integer
-        rankArray[rankIndex] = rank;
-        passwordArray[passIndex] = result;
-    }
-    
-    // close file
-    fclose(inputFile);
-
-    // void, no return
-}
-
