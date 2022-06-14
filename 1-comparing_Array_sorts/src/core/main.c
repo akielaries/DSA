@@ -20,6 +20,7 @@
 #include "../libs/bubbleSort.h"         // bubble sort algorithm
 #include "../libs/insertionSort.h"      // insertion sort algorithm
 #include "../libs/selectionSort.h"      // selection sort algorithm
+#include "../libs/mergeSort.h"          // merge sort algorithm
 #include "../libs/compare.h"            // compare data lib
 #include "../libs/swap.h"               /* swap data lib. C does
                                          * not have such lib so made 
@@ -35,8 +36,8 @@ int main() {
     unsigned long long int passwordArray[MAX_CAPACITY];
     int size;
     double runTime;
-    FILE *bubbleSortOutputFile, *recursiveBubbleSortOutputFile, 
-         *insertionSortOutputFile, *selectionSortOutputFile;    
+    FILE *bubbleSortOutputFile, *insertionSortOutputFile, 
+         *selectionSortOutputFile, *mergeSortOutputFile;    
     
     // import data
     //importData();
@@ -64,14 +65,14 @@ int main() {
         fclose(bubbleSortOutputFile);
 
         // FOR RECURSIVE BUBBLE SORT
-        importData(rankArray, passwordArray);
-        recursiveBubbleSortOutputFile = fopen("../reports/recursiveBubbleSort.csv", "w+");
-        fprintf(bubbleSortOutputFile, "Array Recursive Bubble Sort:\n");
-        runTime = runRecursiveBubbleSort(rankArray, passwordArray, size);
-        fprintf(recursiveBubbleSortOutputFile,                                                                               
-                    "It took %f seconds to sort %d elements.\n", runTime, size);
-        writeDataToFile(rankArray, passwordArray, size, recursiveBubbleSortOutputFile);
-        fclose(recursiveBubbleSortOutputFile);
+        //importData(rankArray, passwordArray);
+        //recursiveBubbleSortOutputFile = fopen("../reports/recursiveBubbleSort.csv", "w+");
+        //fprintf(bubbleSortOutputFile, "Array Recursive Bubble Sort:\n");
+        //runTime = runRecursiveBubbleSort(rankArray, passwordArray, size);
+        //fprintf(recursiveBubbleSortOutputFile, 
+        //            "It took %f seconds to sort %d elements.\n", runTime, size);
+        //writeDataToFile(rankArray, passwordArray, size, recursiveBubbleSortOutputFile);
+        //fclose(recursiveBubbleSortOutputFile);
         // FOR SELECTION SORT; read in csv
         importData(rankArray, passwordArray);
         selectionSortOutputFile = fopen("../reports/selectionSort.csv", "w+");
@@ -91,9 +92,17 @@ int main() {
                     "It took %f seconds to sort %d elements.\n", runTime, size);
         writeDataToFile(rankArray, passwordArray, size, insertionSortOutputFile);
         fclose(insertionSortOutputFile);
+
+        // FOR MERGE SORT
+        importData(rankArray, passwordArray);
+        mergeSortOutputFile = fopen("../reports/mergeSort.csv", "w+");
+        fprintf(mergeSortOutputFile, "Array Merge Sort:\n");
+        runTime = runMergeSort(rankArray, passwordArray, size);
+        fprintf(mergeSortOutputFile, 
+                    "It took %f seconds to sort %d elements.\n", runTime, size);
         
         // display success message to screen
-        printf("\nSorted data written to bubbleSort.csv, recursiveBubbleSort.csv, selectionSort.csv, and insertionSort.csv");
+        printf("\nSorted data written to bubbleSort.csv, recursiveBubbleSort.csv, selectionSort.csv, insertionSort.csv, & mergeSort.csv");
     }
     
     // otherwise, data was not in array

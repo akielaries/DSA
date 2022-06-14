@@ -67,7 +67,7 @@ Function output/returned: length of time of sort (provided)
 Device input/file: none
 Device output/monitor: none
 Dependencies: clock, compareData, swap
-*/
+
 double runRecursiveBubbleSort(int rankArray[], unsigned long long int passwordArray[],
                                                                             int size) {
     // intialize varables
@@ -101,7 +101,7 @@ double runRecursiveBubbleSort(int rankArray[], unsigned long long int passwordAr
 
     return totalTime;
 }
-
+*/
 
 
 

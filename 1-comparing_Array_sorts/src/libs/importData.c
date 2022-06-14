@@ -18,7 +18,7 @@ void importData(int rankArray[], unsigned long long int passwordArray[]) {
     int index;
 
     // open file from data folder
-    inputFile = fopen("../data/HW_1_DATA_UNSORTED.csv", "r");
+    inputFile = fopen("../data/UNSORTED_DATA.csv", "r");
 
     for(rankIndex = 0, passIndex = 0; rankIndex < MAX_CAPACITY;
                                                        rankIndex++, passIndex++) {
