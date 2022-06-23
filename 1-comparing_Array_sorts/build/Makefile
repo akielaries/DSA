@@ -15,7 +15,7 @@ compile:
 
 run:
 	./${TARGET}
-	head -2 ../reports/bubbleSort.csv ../reports/recursiveBubbleSort.csv ../reports/insertionSort.csv ../reports/selectionSort.csv
+	head -2 ../reports/bubbleSort.csv ../reports/insertionSort.csv ../reports/selectionSort.csv
 
 clean:
 	rm -f $(SRCDIR/*.o) $(TARGET) *~

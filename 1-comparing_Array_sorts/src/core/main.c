@@ -20,7 +20,6 @@
 #include "../libs/bubbleSort.h"         // bubble sort algorithm
 #include "../libs/insertionSort.h"      // insertion sort algorithm
 #include "../libs/selectionSort.h"      // selection sort algorithm
-#include "../libs/mergeSort.h"          // merge sort algorithm
 #include "../libs/compare.h"            // compare data lib
 #include "../libs/swap.h"               /* swap data lib. C does
                                          * not have such lib so made 
@@ -37,8 +36,7 @@ int main() {
     int size;
     double runTime;
     FILE *bubbleSortOutputFile, *insertionSortOutputFile, 
-         *selectionSortOutputFile, *mergeSortOutputFile;    
-    
+         *selectionSortOutputFile;    
     // import data
     //importData();
     // prompt for size
@@ -92,14 +90,6 @@ int main() {
                     "It took %f seconds to sort %d elements.\n", runTime, size);
         writeDataToFile(rankArray, passwordArray, size, insertionSortOutputFile);
         fclose(insertionSortOutputFile);
-
-        // FOR MERGE SORT
-        importData(rankArray, passwordArray);
-        mergeSortOutputFile = fopen("../reports/mergeSort.csv", "w+");
-        fprintf(mergeSortOutputFile, "Array Merge Sort:\n");
-        runTime = runMergeSort(rankArray, passwordArray, size);
-        fprintf(mergeSortOutputFile, 
-                    "It took %f seconds to sort %d elements.\n", runTime, size);
         
         // display success message to screen
         printf("\nSorted data written to bubbleSort.csv, recursiveBubbleSort.csv, selectionSort.csv, insertionSort.csv, & mergeSort.csv");
